@@ -3,6 +3,9 @@ import ContactCard from "./ContactCard";
 
 const ContactList = (props) => {
   console.log(props);
+  const deleteContactHandler = (id) => {
+    props.getContactId(id);
+  };
   const renderContactList = props.contacts.map((contact) => {
     return (
       //   <div className="item">
@@ -13,7 +16,11 @@ const ContactList = (props) => {
       //     <i className="trash alternate outline icon"></i>
       //   </div>
 
-      <ContactCard contact={contact}></ContactCard>
+      <ContactCard
+        contact={contact}
+        clickHandler={deleteContactHandler}
+        key={contact.id}
+      ></ContactCard>
     );
   });
 

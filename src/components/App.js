@@ -20,6 +20,14 @@ function App() {
     setContacts([...contacts, { id: uuid(), ...contact }]);
   };
 
+  const removeContactHandler = (id) => {
+    const newContactList = contacts.filter((contact) => {
+      return contact.id !== id;
+    });
+
+    setContacts(newContactList);
+  };
+
   useEffect(() => {
     const retriveConatcts = JSON.parse(localStorage.getItem(LOCAT_STORAGE_KEY));
     if (retriveConatcts) {
@@ -36,7 +44,7 @@ function App() {
     <div className="ui container">
       <Header />
       <AddContact addContactHandler={addContactHandler} />
-      <ContactList contacts={contacts} />
+      <ContactList contacts={contacts} getContactId={removeContactHandler} />
     </div>
   );
 }
